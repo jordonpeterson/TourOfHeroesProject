@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "tour-of-heroes"
+  "defaultProject": "tour-of-heroes",
+  "cli": {
+    "analytics": "fab720e4-0f47-42d1-8c2e-842a0fd73901"
+  }
 }
