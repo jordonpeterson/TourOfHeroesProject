@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "amplify-app"
+  "defaultProject": "amplify-app",
+  "cli": {
+    "analytics": "1af5f9fb-04d8-4c4e-892e-29b693c44630"
+  }
 }
