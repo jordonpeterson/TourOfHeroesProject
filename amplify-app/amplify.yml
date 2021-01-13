@@ -1,6 +1,9 @@
 version: 1
 frontend:
   phases:
+    preTest:
+      commands:
+        - cd amplify-app
     # IMPORTANT - Please verify your build commands
     build:
       commands: [npm run-script build]
