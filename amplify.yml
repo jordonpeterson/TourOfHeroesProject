@@ -3,7 +3,9 @@ frontend:
   phases:
     # IMPORTANT - Please verify your build commands
     preBuild:
-      commands: [cd tour-of-heroes]
+      commands:
+        -[cd tour-of-heroes]
+        -[npm install]
     build:
       commands: [npm run-script build]
   artifacts:
