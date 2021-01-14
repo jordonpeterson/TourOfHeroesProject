@@ -10,7 +10,7 @@ frontend:
       commands: [npm run-script build]
   artifacts:
     # IMPORTANT - Please verify your build output directory
-    baseDirectory: ./tour-of-heroes/dist
+    baseDirectory: /dist
     files:
       - '**/*'
   cache:
