@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'https://bp5ibpc6ej.execute-api.us-west-2.amazonaws.com/dev/TourOfHeroes/heroes'; //This is probably what I need to change in order to connect to my real API Gateway
+  private heroesUrl = 'https://bp5ibpc6ej.execute-api.us-west-2.amazonaws.com/dev/TourOfHeroes/heroes';
 
   constructor(
     private http: HttpClient,
