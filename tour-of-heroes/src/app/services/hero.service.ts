@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Hero } from '../interfaces/hero';
-import { HEROES } from '../mock-assets/mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -11,6 +10,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class HeroService {
   private heroesUrl = 'https://bp5ibpc6ej.execute-api.us-west-2.amazonaws.com/dev/TourOfHeroes/heroes';
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private http: HttpClient,
@@ -27,8 +29,19 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
     this.log(`HeroService: fetched hero id=${id}`)
-    return of(HEROES.find(hero => hero.id === id))
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`HeroService: fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
   }
 
   private log(message: string): void {
