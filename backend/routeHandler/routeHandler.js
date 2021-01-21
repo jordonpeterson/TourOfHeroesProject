@@ -4,7 +4,6 @@ function parseURL(event) {
   url.path;
 }
 
-routeMapping["GET"].url;
 const router = {
   get: (url, handler) => {
     routeMapping.GET[url] = handler;
@@ -45,8 +44,25 @@ async function routeHandler(event, context) {
     ) {
       return routeMapping[event.httpMethod][event.path](event, context);
     } else if (routeMapping[event.httpMethod]) {
-      for (const key in Object.keys(routeMapping[event.httpMethod])) {
-        // if It matches the :id regex
+      for (const url of Object.keys(routeMapping[event.httpMethod])) {
+        // get all matches of pathParameters in the url designated by a colon then a word like character.
+        const matches = url.match(/:\w+[^\\]/g);
+        let replacedPath = url;
+        // replace all 
+        for (const match of matches) {
+          const colonlessMatch = match.substring(1);
+          replacedPath = replacedPath.replace(
+            match,
+            event.pathParameters[colonlessMatch]
+          );
+        }
+        if (event.path === replacedPath) {
+          return routeMapping[event.httpMethod][url](event, context);
+        } else {
+          // Raise 404 Error for unknown path
+          statusCode = "404";
+          body = "Path not found";
+        }
       }
     } else {
       // Raise error for unsupported HTTP verb
