@@ -19,10 +19,10 @@ const router = {
   },
 };
 const routeMapping = {
+  DELETE: {},
   GET: {},
   POST: {},
   PUT: {},
-  DELETE: {},
 };
 
 async function handleGet(event) {

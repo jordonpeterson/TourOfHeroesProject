@@ -1,1 +1,0 @@
-const handleGet = require("./routeHandler");
