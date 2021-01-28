@@ -10,7 +10,7 @@ import { catchError, map, tap } from "rxjs/operators";
 })
 export class HeroService {
   private heroesUrl =
-    "https://bp5ibpc6ej.execute-api.us-west-2.amazonaws.com/dev/TourOfHeroes/heroes";
+    "https://cj5rg0vved.execute-api.us-west-2.amazonaws.com/dev/heroes";
   private httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };

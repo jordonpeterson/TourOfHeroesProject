@@ -18,6 +18,6 @@
     "prettier": "2.2.1"
   },
   "dependencies": {
-    "nvm": "0.0.4"
+    "aws-lambda-router": "^0.9.1"
   }
 }
